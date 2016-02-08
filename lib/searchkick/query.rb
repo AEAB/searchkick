@@ -191,7 +191,10 @@ module Searchkick
         size: per_page,
         from: offset
       }
+
       payload[:explain] = options[:explain] if options[:explain]
+      payload[:script_fields] = options[:script_fields] if options[:script_fields]
+      payload[:fields] = ['_source'] unless payload[:fields].present?
 
       # order
       if options[:order]
